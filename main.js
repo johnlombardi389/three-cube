@@ -57,6 +57,11 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 // Debug
 const gui = new dat.GUI();
+gui.add(cubeMesh.position, "x").min(-3).max(3).step(0.001);
+gui.add(cubeMesh.position, "y").min(-3).max(3).step(0.001);
+gui.add(cubeMesh.position, "z").min(-3).max(3).step(0.001);
+gui.add(cubeMesh, "visible");
+gui.add(cubeMaterial, "wireframe");
 
 // Animate
 const loop = () => {
