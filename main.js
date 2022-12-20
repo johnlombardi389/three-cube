@@ -4,6 +4,12 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import gsap from "gsap";
 import * as dat from "dat.gui";
 
+// Base
+const paramaters = {
+  color: 0xffa800,
+};
+
+// Canvas
 const canvas = document.querySelector(".webgl");
 
 // Scene
@@ -11,7 +17,7 @@ const scene = new THREE.Scene();
 
 // Cube
 const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-const cubeMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const cubeMaterial = new THREE.MeshBasicMaterial({ color: paramaters.color });
 const cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial);
 scene.add(cubeMesh);
 
@@ -62,6 +68,9 @@ gui.add(cubeMesh.position, "y").min(-3).max(3).step(0.001);
 gui.add(cubeMesh.position, "z").min(-3).max(3).step(0.001);
 gui.add(cubeMesh, "visible");
 gui.add(cubeMaterial, "wireframe");
+gui.addColor(paramaters, "color").onChange(() => {
+  cubeMaterial.color.set(paramaters.color);
+});
 
 // Animate
 const loop = () => {
