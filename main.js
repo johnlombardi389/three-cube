@@ -22,6 +22,7 @@ const camera = new THREE.PerspectiveCamera(
   100
 );
 camera.position.z = 3;
+camera.lookAt(cubeMesh.position);
 scene.add(camera);
 
 // Renderer
