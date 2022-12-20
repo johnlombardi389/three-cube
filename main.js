@@ -7,6 +7,12 @@ import * as dat from "dat.gui";
 // Base
 const paramaters = {
   color: 0xffa800,
+  spin: () => {
+    gsap.to(cubeMesh.rotation, {
+      duration: 1.5,
+      y: cubeMesh.rotation.y + Math.PI * 2,
+    });
+  },
 };
 
 // Canvas
@@ -71,6 +77,7 @@ gui.add(cubeMaterial, "wireframe");
 gui.addColor(paramaters, "color").onChange(() => {
   cubeMaterial.color.set(paramaters.color);
 });
+gui.add(paramaters, "spin");
 
 // Animate
 const loop = () => {
