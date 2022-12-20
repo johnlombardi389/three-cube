@@ -33,6 +33,7 @@ scene.add(camera);
 
 // Controls
 const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true;
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -43,6 +44,7 @@ renderer.setSize(sizes.width, sizes.height);
 // Animate
 
 const loop = () => {
+  controls.update();
   renderer.render(scene, camera);
   window.requestAnimationFrame(loop);
 };
