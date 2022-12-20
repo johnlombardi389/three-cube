@@ -2,6 +2,7 @@ import "./style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import gsap from "gsap";
+import * as dat from "dat.gui";
 
 const canvas = document.querySelector(".webgl");
 
@@ -28,6 +29,7 @@ window.addEventListener("resize", () => {
   camera.updateProjectionMatrix();
 
   renderer.setSize(sizes.width, sizes.height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
 
 const camera = new THREE.PerspectiveCamera(
@@ -53,8 +55,10 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-// Animate
+// Debug
+const gui = new dat.GUI();
 
+// Animate
 const loop = () => {
   controls.update();
   renderer.render(scene, camera);
