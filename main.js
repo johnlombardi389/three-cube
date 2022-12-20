@@ -1,6 +1,9 @@
 import "./style.css";
 import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import gsap from "gsap";
+
+const canvas = document.querySelector(".webgl");
 
 // Scene
 const scene = new THREE.Scene();
@@ -28,15 +31,16 @@ camera.position.z = 3;
 camera.lookAt(cubeMesh.position);
 scene.add(camera);
 
+// Controls
+const controls = new OrbitControls(camera, canvas);
+
 // Renderer
-const canvas = document.querySelector(".webgl");
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
 });
 renderer.setSize(sizes.width, sizes.height);
 
 // Animate
-gsap.to(cubeMesh.position, { duration: 1, delay: 1, x: 2 });
 
 const loop = () => {
   renderer.render(scene, camera);
