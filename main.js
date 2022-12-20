@@ -1,5 +1,6 @@
 import "./style.css";
 import * as THREE from "three";
+import gsap from "gsap";
 
 // Scene
 const scene = new THREE.Scene();
@@ -21,6 +22,8 @@ const camera = new THREE.PerspectiveCamera(
   1,
   100
 );
+camera.position.x = 1;
+camera.position.y = 3;
 camera.position.z = 3;
 camera.lookAt(cubeMesh.position);
 scene.add(camera);
@@ -31,4 +34,12 @@ const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
 });
 renderer.setSize(sizes.width, sizes.height);
-renderer.render(scene, camera);
+
+// Animate
+gsap.to(cubeMesh.position, { duration: 1, delay: 1, x: 2 });
+
+const loop = () => {
+  renderer.render(scene, camera);
+  window.requestAnimationFrame(loop);
+};
+loop();
